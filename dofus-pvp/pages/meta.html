@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta PvP DOFUS — Analyse Saison 13</title>
+  <meta name="description" content="Analyse complète de la meta PvP DOFUS : classes les plus jouées, win rates, éléments dominants. Stats kolizéum.">
+  <meta name="keywords" content="meta pvp dofus, stats kolizéum dofus, classes plus jouées dofus pvp">
+  <link rel="canonical" href="https://dofus-pvp.fr/pages/meta.html">
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    .meta-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .highlight-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
+    }
+
+    .highlight-value {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .highlight-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .highlight-sub {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    .element-donut-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .element-bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .element-bar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .element-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .element-pct {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .element-track {
+      height: 10px;
+      background: var(--bg-elevated);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .element-fill {
+      height: 100%;
+      border-radius: 100px;
+      transition: width 1s ease;
+    }
+
+    .meta-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .meta-table th {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+    }
+
+    .meta-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+
+    .meta-table tr:last-child td { border-bottom: none; }
+    .meta-table tr:hover td { background: var(--bg-surface); }
+
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .rank-1 { background: rgba(212,160,23,0.2); color: #d4a017; }
+    .rank-2 { background: rgba(192,192,192,0.2); color: #c0c0c0; }
+    .rank-3 { background: rgba(180,120,60,0.2); color: #cd7f32; }
+    .rank-other { background: var(--bg-elevated); color: var(--text-muted); }
+
+    .win-rate-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wr-track {
+      flex: 1;
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .wr-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+    }
+
+    .wr-value {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .wr-good { color: var(--accent-green); }
+    .wr-avg { color: var(--accent-gold); }
+    .wr-low { color: var(--accent-red); }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+      margin: 48px 0;
+    }
+
+    .meta-note {
+      padding: 14px 18px;
+      background: var(--accent-blue-dim);
+      border: 1px solid var(--border-blue);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+  <script src="../components/colosseum-bg.js"></script>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><img src="../assets/logo-tarkan.png" alt="Tarkan PvP" style="width:38px;height:38px;object-fit:cover;border-radius:6px;"></div><span>Tarkan</span>\&nbsp;PvP</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="equipements.html" data-page="equipements">⚙ Équipements</a></li>
+        <li><a href="tierlist.html" data-page="tierlist">🏆 Tier List PvP</a></li>
+        <li><a href="meta.html" data-page="meta">📊 Meta PvP</a></li>
+        <li><a href="youtube.html" data-page="youtube">▶ YouTube</a></li>
+        <li><a href="statzeum.html" data-page="statzeum">🔬 Statzeum <span class="nav-badge-soon">Soon</span></a></li>
+      </ul>
+      <div class="nav-social">
+        <div class="creator-code" onclick="copyCreatorCode(this)" title="Cliquer pour copier"><span class="creator-label">Code créateur</span><span class="creator-name">TARKAN</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:0.6;flex-shrink:0"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div><a href="https://www.twitch.tv/tarkan_____" class="social-btn" title="Twitch" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9147ff"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg></a><a href="https://www.youtube.com/@TarkanDofus" class="social-btn" title="YouTube" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://x.com/TarkanDofus" class="social-btn" title="X" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.856L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="https://discord.gg/cpbR5Fv" class="social-btn" title="Discord" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.04.033.05a19.909 19.909 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></a><a href="https://www.tiktok.com/@tarkandofus" class="social-btn" title="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a></div>
+      <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+
+      <!-- En-tête -->
+      <div style="margin-bottom:40px">
+        <div class="hero-eyebrow">📊 Analyse statistique · Saison 13</div>
+        <h1 style="font-size:36px;font-weight:700;margin-bottom:8px">Meta PvP DOFUS</h1>
+        <p style="color:var(--text-secondary);max-width:600px">
+          Analyse des données kolizéum. Classes dominantes, win rates, tendances d'éléments.
+          Données issues de l'observation des top serveurs.
+        </p>
+      </div>
+
+      <div class="meta-note">
+        ℹ️ Ces statistiques sont basées sur l'observation et l'expérience de la communauté PvP. Elles ne proviennent pas de données officielles Ankama. Saison 13 · Patch 2.72.
+      </div>
+
+      <!-- Highlights -->
+      <div class="meta-highlight-grid" id="metaHighlights">
+        <!-- Généré dynamiquement -->
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Popularité des classes -->
+      <div style="margin-bottom:48px">
+        <div class="section-header">
+          <h2 class="section-title">👥 Classes les plus jouées</h2>
+          <p class="section-subtitle">Taux de présence en kolizéum — Top 10</p>
+        </div>
+        <div class="chart-card">
+          <div class="bar-chart" id="popularityChart"><!-- Généré --></div>
+        </div>
+      </div>
+
+      <!-- Win Rates -->
+      <div style="margin-bottom:48px">
+        <div class="section-header">
+          <h2 class="section-title">🏆 Classes les plus performantes</h2>
+          <p class="section-subtitle">Win rate — Top 10 (50% = équilibré)</p>
+        </div>
+        <div class="chart-card">
+          <div id="winrateTable"><!-- Généré --></div>
+        </div>
+      </div>
+
+      <!-- Éléments -->
+      <div style="margin-bottom:48px">
+        <div class="section-header">
+          <h2 class="section-title">🔮 Éléments les plus utilisés</h2>
+          <p class="section-subtitle">Distribution des builds par élément principal</p>
+        </div>
+        <div class="chart-card">
+          <div class="element-donut-grid" id="elementChart"><!-- Généré --></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2025 Tarkan PvP — Données non officielles</span>
+        <a href="../index.html" style="color:var(--accent-gold)">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../components/app.js"></script>
+  <script>
+    async function init() {
+      const meta = await loadJSON('../data/meta.json');
+      if (!meta) return;
+
+      // Highlights
+      const topClass = meta.classes_jouees[0];
+      const topWR = meta.classes_performantes[0];
+      const topElement = meta.elements_utilises[0];
+
+      document.getElementById('metaHighlights').innerHTML = `
+        <div class="highlight-box">
+          <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;margin:0 auto 4px"><img src="../assets/classes/${c.classe ? c.classe.toLowerCase() : c.nom.toLowerCase()}.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div>
+          <div class="highlight-label">Classe la plus jouée</div>
+          <div class="highlight-sub">${topClass.classe} — ${topClass.pourcentage}%</div>
+        </div>
+        <div class="highlight-box">
+          <div style="width:56px;height:56px;border-radius:10px;overflow:hidden;margin:0 auto 4px"><img src="../assets/classes/${c.classe ? c.classe.toLowerCase() : c.nom.toLowerCase()}.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div>
+          <div class="highlight-label">Meilleur win rate</div>
+          <div class="highlight-sub">${topWR.classe} — ${topWR.win_rate}%</div>
+        </div>
+        <div class="highlight-box">
+          <span class="highlight-value">${topElement.pourcentage}%</span>
+          <div class="highlight-label">Élément dominant</div>
+          <div class="highlight-sub">${topElement.element}</div>
+        </div>
+        <div class="highlight-box">
+          <span class="highlight-value">19</span>
+          <div class="highlight-label">Classes analysées</div>
+          <div class="highlight-sub">Toutes les classes DOFUS</div>
+        </div>
+        <div class="highlight-box">
+          <span class="highlight-value">S13</span>
+          <div class="highlight-label">Saison actuelle</div>
+          <div class="highlight-sub">Patch 2.72</div>
+        </div>
+      `;
+
+      // Popularity chart
+      document.getElementById('popularityChart').innerHTML = meta.classes_jouees.map((c, i) => `
+        <div class="bar-row">
+          <div class="bar-label" style="display:flex;align-items:center;gap:6px;justify-content:flex-end">
+            <span style="width:22px;height:22px;border-radius:4px;overflow:hidden;display:inline-flex"><img src="../assets/classes/${c.classe ? c.classe.toLowerCase() : c.nom.toLowerCase()}.jpg" alt="${c.classe}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></span>
+            <span>${c.classe}</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" data-value="${c.pourcentage}" style="width:0%"></div>
+          </div>
+          <div class="bar-value">${c.pourcentage}%</div>
+        </div>
+      `).join('');
+
+      // Win rate table
+      document.getElementById('winrateTable').innerHTML = `
+        <table class="meta-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Classe</th>
+              <th>Élément</th>
+              <th>Win Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${meta.classes_performantes.map((c, i) => {
+              const rank = i + 1;
+              const rankClass = rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : 'rank-other';
+              const wrClass = c.win_rate >= 58 ? 'wr-good' : c.win_rate >= 52 ? 'wr-avg' : 'wr-low';
+              return `
+                <tr>
+                  <td><span class="rank-badge ${rankClass}">${rank}</span></td>
+                  <td>
+                    <span style="font-family:var(--font-display);font-weight:700;display:flex;align-items:center;gap:8px">
+                      <span style="width:22px;height:22px;border-radius:4px;overflow:hidden;display:inline-flex;margin-right:6px"><img src="../assets/classes/${c.classe ? c.classe.toLowerCase() : c.nom.toLowerCase()}.jpg" alt="${c.classe}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></span>${c.classe}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="tag tag-element-${ELEMENT_COLORS[c.element] || 'feu'}">${c.element}</span>
+                  </td>
+                  <td>
+                    <div class="win-rate-bar">
+                      <div class="wr-track">
+                        <div class="wr-fill" style="width:${((c.win_rate - 40) / 30 * 100).toFixed(0)}%"></div>
+                      </div>
+                      <span class="wr-value ${wrClass}">${c.win_rate}%</span>
+                    </div>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+
+      // Element chart
+      const elementEmojis = { 'Feu': '🔥', 'Air': '💨', 'Terre': '🪨', 'Eau': '💧', 'Multi': '✨' };
+      document.getElementById('elementChart').innerHTML = `
+        <div style="flex:1;min-width:200px">
+          ${meta.elements_utilises.map(e => `
+            <div class="element-bar-item" style="margin-bottom:14px">
+              <div class="element-bar-top">
+                <div class="element-name">
+                  ${elementEmojis[e.element] || '❓'}
+                  <span class="tag tag-element-${ELEMENT_COLORS[e.element] || 'feu'}" style="margin-left:4px">${e.element}</span>
+                </div>
+                <div class="element-pct" style="color:${e.couleur}">${e.pourcentage}%</div>
+              </div>
+              <div class="element-track">
+                <div class="element-fill" style="width:${e.pourcentage}%;background:${e.couleur};opacity:0.85"></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="flex:1;min-width:200px">
+          <div style="background:var(--bg-surface);border-radius:var(--radius-md);padding:20px;border:1px solid var(--border-subtle)">
+            <div style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:14px;color:var(--text-primary)">Analyse</div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+              🔥 Le <strong style="color:var(--text-primary)">Feu</strong> domine largement la meta actuelle, porté par les classes Xelor, Iop Intelligence et Feca Glyphe.<br><br>
+              💨 L'<strong style="color:var(--text-primary)">Air</strong> reste très compétitif, notamment via le Cra et l'Eliotrope.<br><br>
+              🪨 La <strong style="color:var(--text-primary)">Terre</strong> est solide grâce à l'Iop Force et au Sram.<br><br>
+              L'<strong style="color:var(--text-primary)">Eau</strong> est plus rare mais reste viable sur Eniripsa et Enutrof.
+            </p>
+          </div>
+        </div>
+      `;
+
+      // Animate bars
+      setTimeout(() => animateBarCharts(), 200);
+      setActiveNav('meta');
+    }
+
+    init();
+  </script>
+</body>
+</html>

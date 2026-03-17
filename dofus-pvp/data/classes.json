@@ -1,0 +1,439 @@
+[
+  {
+    "id": "feca",
+    "nom": "Feca",
+    "couleur": "#3a7bd5",
+    "element_principal": "Feu",
+    "role": "Tank / Support",
+    "tier": "A",
+    "tier_comment": "Le Feca reste une référence défensive. Ses glyphes et boucliers sont très difficiles à gérer en PvP. Légèrement en retrait face aux classes burst S-tier.",
+    "description": "Classe de protection par excellence. Maîtrise les glyphes et boucliers pour contrôler la zone de combat.",
+    "forces": [
+      "Tankiness extrême",
+      "Contrôle de zone",
+      "Boucliers puissants"
+    ],
+    "faiblesses": [
+      "Mobilité faible",
+      "Burst limité",
+      "Lent en 1v1 offensif"
+    ],
+    "popularite": 62,
+    "win_rate": 54,
+    "icone": "assets/icons/feca.png"
+  },
+  {
+    "id": "osamodas",
+    "nom": "Osamodas",
+    "couleur": "#2ecc71",
+    "element_principal": "Feu / Air",
+    "role": "Invocateur / Support",
+    "tier": "B",
+    "tier_comment": "L'Osamodas est un peu en retrait depuis le dernier rework. Ses invocations sont puissantes mais prévisibles. Reste viable en équipe.",
+    "description": "Maître des invocations animales. Peut submerger l'adversaire avec ses créatures.",
+    "forces": [
+      "Invocations nombreuses",
+      "Polyvalent",
+      "Bon sustain"
+    ],
+    "faiblesses": [
+      "Dépend des invocations",
+      "Faible sans support",
+      "Complexe"
+    ],
+    "popularite": 45,
+    "win_rate": 49,
+    "icone": "assets/icons/osamodas.png"
+  },
+  {
+    "id": "enutrof",
+    "nom": "Enutrof",
+    "couleur": "#f39c12",
+    "element_principal": "Eau",
+    "role": "Support / Debuff",
+    "tier": "B",
+    "tier_comment": "Fort en support d'équipe mais limité en 1v1. Le vol de PA via Vieillesse est toujours redoutable mais contre par les builds haute sagesse.",
+    "description": "Classe opportuniste, excelle dans le support et le vol de PA adverses.",
+    "forces": [
+      "Vol de PA",
+      "Soutien équipe",
+      "Polyvalent"
+    ],
+    "faiblesses": [
+      "Faible burst",
+      "1v1 difficile",
+      "Lent"
+    ],
+    "popularite": 38,
+    "win_rate": 47,
+    "icone": "assets/icons/enutrof.png"
+  },
+  {
+    "id": "sram",
+    "nom": "Sram",
+    "couleur": "#8e44ad",
+    "element_principal": "Terre / Air",
+    "role": "Assassin / Piégeur",
+    "tier": "S",
+    "tier_comment": "Le Sram est en meta absolue. Invisibilité + pièges + burst = combinaison quasi impossible à jouer. Top pick en kolizéum solo.",
+    "description": "Maître de l'ombre et des pièges. L'adversaire ne sait jamais d'où vient l'attaque.",
+    "forces": [
+      "Invisibilité",
+      "Burst massif",
+      "Pièges surprises"
+    ],
+    "faiblesses": [
+      "Fragile si dévoilé",
+      "Dépend du placement",
+      "Contre par certains sorts"
+    ],
+    "popularite": 78,
+    "win_rate": 61,
+    "icone": "assets/icons/sram.png"
+  },
+  {
+    "id": "xelor",
+    "nom": "Xelor",
+    "couleur": "#1abc9c",
+    "element_principal": "Feu / Air",
+    "role": "Vol de PA / Contrôle",
+    "tier": "S",
+    "tier_comment": "Le Xelor domine le PvP grâce au vol de PA. Priver un adversaire de 4PA par tour le rend inefficace. Nécessite une très haute maîtrise.",
+    "description": "Maître du temps, vole les PA adverses et téléporte ses ennemis dans des positions impossibles.",
+    "forces": [
+      "Vol de PA dévastateur",
+      "Téléportation",
+      "Initiative max"
+    ],
+    "faiblesses": [
+      "Complexité élevée",
+      "Fragile physiquement",
+      "Dépend de l'init"
+    ],
+    "popularite": 72,
+    "win_rate": 63,
+    "icone": "assets/icons/xelor.png"
+  },
+  {
+    "id": "ecaflip",
+    "nom": "Ecaflip",
+    "couleur": "#e74c3c",
+    "element_principal": "Feu / Air",
+    "role": "DPS / Burst",
+    "tier": "A",
+    "tier_comment": "Très fort en PvP grâce à ses combos chance/burst. La variabilité des dégâts peut surprendre. Bon rapport difficulté/efficacité.",
+    "description": "Le joueur de carte du sort. Ses dégâts varient mais peuvent être absolument dévastateurs.",
+    "forces": [
+      "Burst potentiel énorme",
+      "Polyvalent",
+      "Bonne initiative"
+    ],
+    "faiblesses": [
+      "RNG parfois défavorable",
+      "Moins fiable que d'autres",
+      "Dépend des cartes"
+    ],
+    "popularite": 55,
+    "win_rate": 52,
+    "icone": "assets/icons/ecaflip.png"
+  },
+  {
+    "id": "eniripsa",
+    "nom": "Eniripsa",
+    "couleur": "#27ae60",
+    "element_principal": "Air / Eau",
+    "role": "Healer / Support",
+    "tier": "A",
+    "tier_comment": "Indispensable en équipe PvP. Ses soins de masse et debuffs sont cruciaux. Moins efficace en 1v1 mais essentiel en kolizéum d'équipe.",
+    "description": "La guérisseuse de la communauté. Soins, buffs, debuffs et quelques dégâts.",
+    "forces": [
+      "Soins puissants",
+      "Support crucial en équipe",
+      "Survie élevée"
+    ],
+    "faiblesses": [
+      "Faible en 1v1 offensif",
+      "Dépend des alliés",
+      "Ciblé en priorité"
+    ],
+    "popularite": 65,
+    "win_rate": 50,
+    "icone": "assets/icons/eniripsa.png"
+  },
+  {
+    "id": "iop",
+    "nom": "Iop",
+    "couleur": "#e67e22",
+    "element_principal": "Terre",
+    "role": "DPS Melee / Burst",
+    "tier": "S",
+    "tier_comment": "L'Iop est la référence du burst melee. Son combo Colère + Puissance peut one-shot n'importe quelle classe. Simple à prendre en main, redoutable à haut niveau.",
+    "description": "Le guerrier brutal du PvP. Approche directe, dégâts massifs, difficile à ignorer.",
+    "forces": [
+      "Burst one-shot",
+      "Simple et efficace",
+      "Bonne résistance"
+    ],
+    "faiblesses": [
+      "Prévisible",
+      "Fragile à distance",
+      "Peu d'options de fuite"
+    ],
+    "popularite": 82,
+    "win_rate": 58,
+    "icone": "assets/icons/iop.png"
+  },
+  {
+    "id": "cra",
+    "nom": "Cra",
+    "couleur": "#16a085",
+    "element_principal": "Air / Feu",
+    "role": "DPS Distance / Kiter",
+    "tier": "A",
+    "tier_comment": "Excellent kiter, le Cra distance domine ses adversaires quand il peut maintenir la portée. Très performant en 1v1 avec les bons équipements.",
+    "description": "L'archer précis du PvP. Distance maximale, pièges, et flèches dévastatrices.",
+    "forces": [
+      "Distance maximale",
+      "Kiting excellent",
+      "Dégâts constants"
+    ],
+    "faiblesses": [
+      "Fragile au corps-à-corps",
+      "Dépend du placement",
+      "PA-intensif"
+    ],
+    "popularite": 70,
+    "win_rate": 55,
+    "icone": "assets/icons/cra.png"
+  },
+  {
+    "id": "sadida",
+    "nom": "Sadida",
+    "couleur": "#d35400",
+    "element_principal": "Feu / Eau",
+    "role": "DoT / Invocateur",
+    "tier": "A",
+    "tier_comment": "Fort en DoT et invocations de poupées. Difficile à gérer pour les classes sans mobilité. Nécessite patience et bonne gestion des poupées.",
+    "description": "Le maître des plantes et des poupées. Empoisonne, ralentit et submerge ses adversaires.",
+    "forces": [
+      "DoT dévastateurs",
+      "Poupées comme boucliers",
+      "Très résistant"
+    ],
+    "faiblesses": [
+      "Lent à monter",
+      "Peu de burst",
+      "Complexe"
+    ],
+    "popularite": 48,
+    "win_rate": 51,
+    "icone": "assets/icons/sadida.png"
+  },
+  {
+    "id": "sacrieur",
+    "nom": "Sacrieur",
+    "couleur": "#c0392b",
+    "element_principal": "Feu / Terre",
+    "role": "Tank / DPS Melee",
+    "tier": "B",
+    "tier_comment": "Le Sacrieur est un peu en retrait. Fort en sustain et en burst quand à bas PV, mais les adversaires évitent souvent de le tuer pour ne pas déclencher son bonus.",
+    "description": "Devient plus dangereux en perdant des PV. Un guerrier qui se bat mieux au bord de la mort.",
+    "forces": [
+      "Burst à bas PV",
+      "Bonne résistance",
+      "Téléportation"
+    ],
+    "faiblesses": [
+      "Prévisible en fin de combat",
+      "Peut être kité",
+      "Limité contre heal"
+    ],
+    "popularite": 50,
+    "win_rate": 48,
+    "icone": "assets/icons/sacrieur.png"
+  },
+  {
+    "id": "pandawa",
+    "nom": "Pandawa",
+    "couleur": "#2980b9",
+    "element_principal": "Eau / Air",
+    "role": "Support / Debuff",
+    "tier": "A",
+    "tier_comment": "Excellent en kolizéum d'équipe grâce à l'ivresse et aux lancers. Le Pandawa peut changer un combat en un tour grâce au repositionnement forcé.",
+    "description": "Maître de l'ivresse. Lance ses adversaires, les étourdit et crée le chaos.",
+    "forces": [
+      "Repositionnement forcé",
+      "Ivresse puissante",
+      "Polyvalent"
+    ],
+    "faiblesses": [
+      "Peu de dégâts purs",
+      "Mécanique ivresse lente",
+      "Vulnérable si seul"
+    ],
+    "popularite": 60,
+    "win_rate": 53,
+    "icone": "assets/icons/pandawa.png"
+  },
+  {
+    "id": "roublard",
+    "nom": "Roublard",
+    "couleur": "#7f8c8d",
+    "element_principal": "Air / Terre",
+    "role": "Piégeur / DPS",
+    "tier": "B",
+    "tier_comment": "Le Roublard est fort dans les bonnes mains mais complexe à maîtriser. Ses bombes peuvent faire des dégâts énormes mais nécessitent une préparation.",
+    "description": "Expert en explosifs. Place des bombes, crée des chaînes d'explosion dévastatrices.",
+    "forces": [
+      "Dégâts zone massifs",
+      "Contrôle espace",
+      "Surprise"
+    ],
+    "faiblesses": [
+      "Préparation lente",
+      "Fragile",
+      "Contre par la mobilité"
+    ],
+    "popularite": 35,
+    "win_rate": 46,
+    "icone": "assets/icons/roublard.png"
+  },
+  {
+    "id": "forgelance",
+    "nom": "Forgelance",
+    "couleur": "#b8860b",
+    "element_principal": "Terre / Feu",
+    "role": "DPS Melee / Tank",
+    "tier": "B",
+    "tier_comment": "Le Forgelance est solide en melee avec ses armures et marteaux. Bonne résistance mais mobilité limitée. Viable en PvP avec le bon build.",
+    "description": "Guerrier forgeron. Utilise ses armures et marteaux pour écraser ses adversaires.",
+    "forces": [
+      "Bonne résistance",
+      "Dégâts melee solides",
+      "Polyvalent"
+    ],
+    "faiblesses": [
+      "Mobilité faible",
+      "Peu de distance",
+      "Prévisible"
+    ],
+    "popularite": 38,
+    "win_rate": 48,
+    "icone": "assets/classes/forgelance.jpg"
+  },
+  {
+    "id": "zobal",
+    "nom": "Zobal",
+    "couleur": "#f1c40f",
+    "element_principal": "Neutre / Feu",
+    "role": "DPS / Debuff",
+    "tier": "C",
+    "tier_comment": "Le Zobal souffre en PvP haut niveau. Peu de mouvements, dégâts moyens. Reste viable en bas niveau mais clairement en retrait dans la meta actuelle.",
+    "description": "Puppet master mystérieux. Utilise des marionnettes et des illusions pour déstabiliser.",
+    "forces": [
+      "Zone de contrôle",
+      "Debuffs utiles",
+      "Surprenant"
+    ],
+    "faiblesses": [
+      "Faible mobilité",
+      "Dégâts insuffisants",
+      "Peu flexible"
+    ],
+    "popularite": 25,
+    "win_rate": 42,
+    "icone": "assets/icons/zobal.png"
+  },
+  {
+    "id": "steamer",
+    "nom": "Steamer",
+    "couleur": "#e74c3c",
+    "element_principal": "Feu / Eau",
+    "role": "Ingénieur / Tourelles",
+    "tier": "B",
+    "tier_comment": "Les tourelles du Steamer sont puissantes mais prévisibles. Fort en zone mais vulnérable si l'adversaire peut s'en approcher.",
+    "description": "Ingénieur de combat. Déploie des tourelles mécaniques pour dominer la zone.",
+    "forces": [
+      "Dégâts de zone",
+      "Tourelles autonomes",
+      "Bon contrôle"
+    ],
+    "faiblesses": [
+      "Tourelles détruisibles",
+      "Peu mobile",
+      "Prévisible"
+    ],
+    "popularite": 42,
+    "win_rate": 48,
+    "icone": "assets/icons/steamer.png"
+  },
+  {
+    "id": "eliotrope",
+    "nom": "Eliotrope",
+    "couleur": "#1abc9c",
+    "element_principal": "Air / Feu",
+    "role": "Portails / DPS",
+    "tier": "S",
+    "tier_comment": "L'Eliotrope en S-tier grâce à ses portails. La mobilité offerte par les portails est unique et quasi impossible à gérer pour certaines classes.",
+    "description": "Maître des portails dimensionnels. Crée des connexions entre zones pour des attaques imprévisibles.",
+    "forces": [
+      "Mobilité absolue",
+      "Dégâts depuis n'importe où",
+      "Imprévisible"
+    ],
+    "faiblesses": [
+      "Complexité très haute",
+      "Fragile sans portails",
+      "Préparation nécessaire"
+    ],
+    "popularite": 65,
+    "win_rate": 59,
+    "icone": "assets/icons/eliotrope.png"
+  },
+  {
+    "id": "huppermage",
+    "nom": "Huppermage",
+    "couleur": "#8e44ad",
+    "element_principal": "Multi-éléments",
+    "role": "Mage / DPS Multi",
+    "tier": "A",
+    "tier_comment": "L'Huppermage est unique dans sa capacité à utiliser tous les éléments. Très adaptatif face à n'importe quel adversaire. Difficile à maîtriser mais très récompensant.",
+    "description": "Mage aux runes. Maîtrise les quatre éléments et peut les combiner pour des effets dévastateurs.",
+    "forces": [
+      "Polyvalence élémentaire",
+      "Adaptable",
+      "Dégâts consistants"
+    ],
+    "faiblesses": [
+      "Très complexe",
+      "Stats partagées difficiles",
+      "Long apprentissage"
+    ],
+    "popularite": 52,
+    "win_rate": 54,
+    "icone": "assets/icons/huppermage.png"
+  },
+  {
+    "id": "ouginak",
+    "nom": "Ouginak",
+    "couleur": "#d35400",
+    "element_principal": "Terre / Air",
+    "role": "DPS Melee / Survie",
+    "tier": "B",
+    "tier_comment": "L'Ouginak a un bon potentiel mais reste en retrait dans la meta actuelle. Son système de rage est intéressant mais moins efficace que les burst purs S-tier.",
+    "description": "Guerrier bestial. Accumule de la rage pour libérer des attaques dévastatrices.",
+    "forces": [
+      "Dégâts de rage importants",
+      "Bonne survie",
+      "Versatile"
+    ],
+    "faiblesses": [
+      "Accumulation lente",
+      "Peut être kité pendant montée rage",
+      "Prévisible"
+    ],
+    "popularite": 44,
+    "win_rate": 49,
+    "icone": "assets/icons/ouginak.png"
+  }
+]
