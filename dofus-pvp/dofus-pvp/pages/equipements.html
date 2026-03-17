@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Équipements & Builds PvP — Tarkan PvP</title>
+  <meta name="description" content="Tous les builds PvP DOFUS de Tarkan : équipements par classe, filtrés par élément et budget.">
+  <link rel="canonical" href="https://dofus-pvp.fr/pages/equipements.html">
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+
+    /* ── PAGE HEADER ── */
+    .page-hero { margin-bottom: 40px; }
+    .page-hero h1 { font-size: 36px; font-weight: 700; margin-bottom: 6px; }
+    .page-hero p { color: var(--text-secondary); font-size: 15px; }
+
+    /* ── CATEGORY TABS ── */
+    .cat-tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .cat-tab {
+      padding: 9px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .cat-tab.active, .cat-tab:hover {
+      background: var(--accent-gold-dim);
+      border-color: var(--border-gold);
+      color: var(--accent-gold);
+    }
+
+    /* ── CLASS FILTER ── */
+    .class-filter-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+    .class-filter-label {
+      font-size: 10px; color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 10px; display: block;
+    }
+    .class-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .class-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 5px 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .class-chip:hover, .class-chip.active {
+      border-color: var(--border-gold);
+      color: var(--accent-gold);
+      background: var(--accent-gold-dim);
+    }
+    .class-chip img {
+      width: 22px; height: 22px;
+      border-radius: 4px; object-fit: cover;
+    }
+
+    /* ── FILTER ROW ── */
+    .filter-row {
+      display: flex; gap: 12px;
+      align-items: center; flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .build-count {
+      font-size: 12px; color: var(--text-muted);
+      font-family: var(--font-mono);
+      margin-left: auto;
+    }
+
+    /* ── BUILD CARDS GRID ── */
+    .builds-grid-new {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── BUILD CARD ── */
+    .build-card-new {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .build-card-new::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, rgba(201,146,42,0.4), rgba(201,146,42,0.05) 50%, transparent) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .build-card-new:hover::before { opacity: 1; }
+
+    .build-card-new:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(201,146,42,0.18), 0 0 0 1px rgba(201,146,42,0.25);
+      border-color: rgba(201,146,42,0.35);
+    }
+
+    /* Card header */
+    .bc-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+    }
+
+    .bc-class-img {
+      width: 46px; height: 46px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 0 12px rgba(201,146,42,0.2);
+    }
+    .bc-class-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .bc-title-wrap { flex: 1; min-width: 0; }
+    .bc-name {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 5px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .bc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .bc-tier {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 700;
+      width: 34px; height: 34px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .bc-tier-S { background: rgba(255,107,53,0.15); color: #ff6b35; border: 1px solid rgba(255,107,53,0.35); }
+    .bc-tier-A { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.35); }
+    .bc-tier-B { background: rgba(99,102,241,0.15); color: #6366f1; border: 1px solid rgba(99,102,241,0.35); }
+    .bc-tier-C { background: rgba(107,114,128,0.15); color: #6b7280; border: 1px solid rgba(107,114,128,0.35); }
+
+    /* Screenshot */
+    .bc-screenshot {
+      position: relative;
+      overflow: hidden;
+      background: #0e0a06;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .bc-screenshot img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+      filter: brightness(0.92);
+    }
+
+    .build-card-new:hover .bc-screenshot img {
+      transform: scale(1.02);
+      filter: brightness(1);
+    }
+
+    /* Gold frame overlay */
+    .bc-screenshot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, rgba(201,146,42,0.15) 0%, transparent 40%, transparent 60%, rgba(201,146,42,0.08) 100%) border-box;
+      pointer-events: none;
+    }
+
+    /* Overlay CTA on hover */
+    .bc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,5,2,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(3px);
+    }
+    .build-card-new:hover .bc-overlay { opacity: 1; }
+
+    .bc-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--accent-gold), #a86b00);
+      color: #000;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(201,146,42,0.4);
+    }
+    .bc-cta-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 28px rgba(201,146,42,0.6);
+    }
+
+    /* No screenshot placeholder */
+    .bc-no-screen {
+      aspect-ratio: 16/7;
+      background: var(--bg-elevated);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .bc-no-screen-icon { font-size: 36px; opacity: 0.4; }
+    .bc-no-screen-text { font-size: 13px; font-family: var(--font-display); }
+
+    /* Footer stats */
+    .bc-footer {
+      padding: 12px 18px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .bc-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .bc-stat-val {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+    .bc-stat-lbl {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .bc-dofusbook-link {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .bc-dofusbook-link:hover { color: var(--accent-gold); }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--text-muted);
+    }
+    .empty-icon { font-size: 52px; margin-bottom: 16px; }
+
+    /* ── CONSEIL STATS ── */
+    .stats-conseil-block {
+      margin: 0 14px 14px;
+      padding: 12px 14px;
+      background: rgba(59,130,246,0.06);
+      border-left: 3px solid #3b82f6;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .stats-conseil-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .stats-conseil-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .fm-conseil-block {
+      grid-column: 1/-1;
+      background: linear-gradient(135deg, rgba(201,146,42,0.08), rgba(201,146,42,0.03));
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .fm-conseil-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), transparent);
+    }
+    .fm-conseil-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+    .fm-conseil-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .fm-conseil-text strong {
+      color: var(--accent-gold-light);
+    }
+
+    @media (max-width: 768px) {
+      .builds-grid-new { grid-template-columns: 1fr; }
+    }
+
+    /* ── CLASS SECTION HEADER ── */
+    .class-section { margin-bottom: 48px; }
+
+    .class-section-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 28px;
+      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .class-section-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), rgba(201,146,42,0.2), transparent);
+    }
+
+    .class-section-img {
+      width: 72px; height: 72px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--border-gold);
+      box-shadow: 0 0 20px rgba(201,146,42,0.25);
+      flex-shrink: 0;
+    }
+    .class-section-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .class-section-info { flex: 1; }
+    .class-section-title {
+      font-family: var(--font-display);
+      font-size: 26px; font-weight: 700;
+      color: var(--accent-gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .class-section-sub {
+      font-size: 13px; color: var(--text-muted);
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── PRIORITY RANKING ── */
+    .priority-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .priority-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      flex: 1;
+      min-width: 200px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .priority-item:hover {
+      border-color: var(--border-gold);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .priority-medal {
+      font-size: 22px;
+      flex-shrink: 0;
+      width: 32px;
+      text-align: center;
+    }
+
+    .priority-info { flex: 1; min-width: 0; }
+    .priority-num {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .priority-name {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .priority-item-1 { border-color: rgba(255,215,0,0.3); }
+    .priority-item-1 .priority-num { color: #ffd700; }
+    .priority-item-2 { border-color: rgba(192,192,192,0.3); }
+    .priority-item-2 .priority-num { color: #c0c0c0; }
+    .priority-item-3 { border-color: rgba(205,127,50,0.3); }
+    .priority-item-3 .priority-num { color: #cd7f32; }
+
+    /* ── TARKAN TIP INSIDE CARD ── */
+    .bc-tip {
+      margin: 0 14px 14px;
+      padding: 12px 14px;
+      background: rgba(201,146,42,0.06);
+      border-left: 3px solid var(--accent-gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .bc-tip-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .bc-tip-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .bc-tip-text span {
+      display: block;
+      padding: 2px 0;
+    }
+    .bc-tip-text span::before {
+      content: '→ ';
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <script src="../components/colosseum-bg.js"></script>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon"><img src="../assets/logo-tarkan.png" alt="Tarkan PvP" style="width:38px;height:38px;object-fit:cover;border-radius:6px;"></div>
+        <span>Tarkan</span>&nbsp;PvP
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="equipements.html" data-page="equipements">⚙ Équipements</a></li>
+        <li><a href="tierlist.html" data-page="tierlist">🏆 Tier List PvP</a></li>
+        <li><a href="meta.html" data-page="meta">📊 Meta PvP</a></li>
+        <li><a href="youtube.html" data-page="youtube">▶ YouTube</a></li>
+        <li><a href="statzeum.html" data-page="statzeum">🔬 Statzeum <span class="nav-badge-soon">Soon</span></a></li>
+      </ul>
+      <div class="nav-social">
+        <div class="creator-code" onclick="copyCreatorCode(this)" title="Cliquer pour copier"><span class="creator-label">Code créateur</span><span class="creator-name">TARKAN</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:0.6;flex-shrink:0"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
+        <a href="https://www.twitch.tv/tarkan_____" class="social-btn" title="Twitch" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="#9147ff"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg></a>
+        <a href="https://www.youtube.com/@TarkanDofus" class="social-btn" title="YouTube" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://x.com/TarkanDofus" class="social-btn" title="X" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.856L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.tiktok.com/@tarkandofus" class="social-btn" title="TikTok" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
+        <a href="https://discord.gg/cpbR5Fv" class="social-btn" title="Discord" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.04.033.05a19.909 19.909 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></a>
+      </div>
+      <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+
+      <div class="page-hero">
+        <div class="hero-eyebrow" style="display:inline-flex;margin-bottom:14px">⚙ Builds PvP par Tarkan</div>
+        <h1>Équipements & Builds PvP</h1>
+        <p>Builds testés et validés en kolizéum. Cliquez sur un build pour l'ouvrir dans Dofusbook.</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" data-cat="all" onclick="setCat('all',this)">📦 Tous les builds</button>
+        <button class="cat-tab" data-cat="mes-equipements" onclick="setCat('mes-equipements',this)">🎮 Mes équipements</button>
+        <button class="cat-tab" data-cat="top-ladder" onclick="setCat('top-ladder',this)">🏆 Top Ladder</button>
+        <button class="cat-tab" data-cat="low-budget" onclick="setCat('low-budget',this)">💸 Low Budget</button>
+      </div>
+
+      <!-- CLASSES FILTER -->
+      <div class="class-filter-wrap">
+        <span class="class-filter-label">Filtrer par classe</span>
+        <div class="class-chips" id="classChips"></div>
+      </div>
+
+      <!-- SECONDARY FILTERS -->
+      <div class="filter-row">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input class="search-input" type="text" id="searchInput" placeholder="Rechercher un build..." oninput="onSearch(this.value)">
+        </div>
+        <div class="filter-bar">
+          <span class="filter-label">Élément :</span>
+          <button class="filter-btn active" onclick="setEl('all',this)">Tous</button>
+          <button class="filter-btn" onclick="setEl('Feu',this)">🔥 Feu</button>
+          <button class="filter-btn" onclick="setEl('Air',this)">💨 Air</button>
+          <button class="filter-btn" onclick="setEl('Terre',this)">🪨 Terre</button>
+          <button class="filter-btn" onclick="setEl('Eau',this)">💧 Eau</button>
+          <button class="filter-btn" onclick="setEl('Pou',this)">➡ Do Pou</button>
+        </div>
+        <div class="filter-bar">
+          <span class="filter-label">Budget :</span>
+          <button class="filter-btn active" onclick="setBgt('all',this)">Tous</button>
+          <button class="filter-btn" onclick="setBgt('Faible',this)">💸 Faible</button>
+          <button class="filter-btn" onclick="setBgt('Moyen',this)">💰 Moyen</button>
+          <button class="filter-btn" onclick="setBgt('Élevé',this)">💎 Élevé</button>
+        </div>
+        <span class="build-count" id="buildCount">-- builds</span>
+      </div>
+
+      <!-- BUILDS GRID -->
+      <div class="builds-grid-new" id="buildsGrid">
+        <div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:60px">Chargement...</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2025 Tarkan PvP — Non affilié à Ankama</span>
+        <a href="../index.html" style="color:var(--accent-gold)">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../components/app.js"></script>
+  <script>
+    let allBuilds = [];
+    let allClasses = [];
+
+    // Filter state
+    let fCat = 'all', fClass = 'all', fEl = 'all', fBgt = 'all', fSearch = '';
+
+    const ELEMENT_TAG_MAP = {
+      'Terre': 'terre', 'Feu': 'feu', 'Air': 'air', 'Eau': 'eau', 'Multi': 'multi', 'Pou': 'pou'
+    };
+    const BUDGET_TAG_MAP = {
+      'Élevé': 'eleve', 'Moyen': 'moyen', 'Faible': 'faible'
+    };
+
+    async function init() {
+      allBuilds  = await loadJSON('../data/builds.json')  || [];
+      allClasses = await loadJSON('../data/classes.json') || [];
+      buildClassChips();
+      render();
+      setActiveNav('equipements');
+    }
+
+    function buildClassChips() {
+      const allBtn = `<button class="class-chip active" data-cls="all" onclick="setCls('all',this)">✦ Toutes</button>`;
+      const chips = allClasses.map(c => {
+        const hasBuild = allBuilds.some(b => b.classe === c.nom);
+        return `<button class="class-chip" data-cls="${c.nom}" onclick="setCls('${c.nom}',this)"
+          style="${!hasBuild ? 'opacity:0.4;' : ''}"
+          title="${!hasBuild ? c.nom + ' — Builds à venir' : c.nom}">
+          <img src="../assets/classes/${c.nom.toLowerCase()}.jpg" alt="${c.nom}" onerror="this.style.display='none'">
+          ${c.nom}
+        </button>`;
+      }).join('');
+      document.getElementById('classChips').innerHTML = allBtn + chips;
+    }
+
+    function filtered() {
+      return allBuilds.filter(b => {
+        if (fCat    !== 'all' && b.categorie !== fCat)    return false;
+        if (fClass  !== 'all' && b.classe    !== fClass)  return false;
+        if (fEl     !== 'all' && !b.element.includes(fEl)) return false;
+        if (fBgt    !== 'all' && b.budget    !== fBgt)    return false;
+        if (fSearch && ![b.nom, b.classe, b.description].join(' ').toLowerCase().includes(fSearch.toLowerCase())) return false;
+        return true;
+      });
+    }
+
+    function render() {
+      const list = filtered();
+      document.getElementById('buildCount').textContent = `${list.length} build${list.length > 1 ? 's' : ''}`;
+
+      if (!list.length) {
+        const comingSoon = fClass !== 'all'
+          ? `<div class="empty-state">
+              <div class="empty-icon">⚔️</div>
+              <p style="font-family:var(--font-display);font-size:18px;color:var(--accent-gold);margin-bottom:8px">${fClass}</p>
+              <p>Les builds pour cette classe arrivent bientôt !<br><small style="color:var(--text-muted)">Suis le Discord ou le live Twitch pour être notifié.</small></p>
+              <div style="display:flex;gap:10px;justify-content:center;margin-top:20px">
+                <a href="https://www.twitch.tv/tarkan_____" class="btn btn-outline" target="_blank">🟣 Twitch</a>
+                <a href="https://discord.gg/cpbR5Fv" class="btn btn-outline" target="_blank">💬 Discord</a>
+              </div>
+            </div>`
+          : `<div class="empty-state">
+              <div class="empty-icon">🔍</div>
+              <p>Aucun build trouvé avec ces filtres.</p>
+            </div>`;
+        document.getElementById('buildsGrid').innerHTML = comingSoon;
+        return;
+      }
+
+      // Grouper par classe
+      const byClass = {};
+      list.forEach(b => {
+        if (!byClass[b.classe]) byClass[b.classe] = [];
+        byClass[b.classe].push(b);
+      });
+
+      // Trier chaque groupe par priorité
+      Object.keys(byClass).forEach(cls => {
+        byClass[cls].sort((a, b) => (a.priorite || 99) - (b.priorite || 99));
+      });
+
+      const MEDALS = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣'];
+      const PRIORITY_LABELS = ['#1 — Mon conseil principal', '#2 — Très recommandé', '#3 — Bonne alternative', '#4 — Situationnel'];
+
+      let html = '';
+      Object.entries(byClass).forEach(([className, builds]) => {
+        const cls = allClasses.find(c => c.nom === className);
+
+        // Header de section classe
+        html += `<div class="class-section" style="grid-column:1/-1">
+          <div class="class-section-header">
+            <div class="class-section-img">
+              <img src="../assets/classes/${className.toLowerCase()}.jpg" alt="${className}">
+            </div>
+            <div class="class-section-info">
+              <div class="class-section-title">${className.toUpperCase()}</div>
+              <div class="class-section-sub">${builds.length} build${builds.length > 1 ? 's' : ''} disponible${builds.length > 1 ? 's' : ''}</div>
+            </div>
+          </div>`;
+
+        // Barre de priorité
+        if (builds.length > 1) {
+          html += `<div class="priority-bar">`;
+          builds.forEach((b, i) => {
+            html += `
+              <a href="${b.lien_dofusbook}" target="_blank" rel="noopener" class="priority-item priority-item-${i+1}" title="Voir sur Dofusbook">
+                <div class="priority-medal">${MEDALS[i] || (i+1)+'.'}</div>
+                <div class="priority-info">
+                  <div class="priority-num">${PRIORITY_LABELS[i] || `#${i+1}`}</div>
+                  <div class="priority-name">${b.nom}</div>
+                </div>
+              </a>`;
+          });
+          html += `</div>`;
+
+          // Conseil FM de la classe (prend le premier build qui en a un)
+          const buildWithFm = builds.find(b => b.conseil_fm && b.conseil_fm.trim() !== '');
+          if (buildWithFm) {
+            html += `
+              <div class="fm-conseil-block">
+                <div class="fm-conseil-header">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  CONSEIL FORGEMAGIE — ${className.toUpperCase()}
+                </div>
+                <div class="fm-conseil-text">${buildWithFm.conseil_fm}</div>
+              </div>`;
+          }
+        }
+
+        html += `</div>`; // fin class-section header wrapper
+
+        // Cards des builds
+        builds.forEach(b => {
+          html += buildCard(b);
+        });
+      });
+
+      document.getElementById('buildsGrid').innerHTML = html;
+    }
+
+    function buildCard(b) {
+      const elKey  = ELEMENT_TAG_MAP[b.element] || 'feu';
+      const bgtKey = BUDGET_TAG_MAP[b.budget]   || 'moyen';
+      const tierCls = `bc-tier-${b.tier}`;
+      const MEDALS = ['🥇', '🥈', '🥉', '4️⃣'];
+      const medal = b.priorite ? (MEDALS[b.priorite - 1] || b.priorite) : '';
+
+      // Screenshot ou placeholder
+      const screenHTML = b.image_build
+        ? `<div class="bc-screenshot">
+             <img src="../${b.image_build}" alt="${b.nom}" loading="lazy">
+             <div class="bc-overlay">
+               <a href="${b.lien_dofusbook}" target="_blank" rel="noopener" class="bc-cta-btn" onclick="event.stopPropagation()">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3h7v7l-2-2-5 5-2-2 5-5-3-3zm-4 3H4a1 1 0 00-1 1v13a1 1 0 001 1h13a1 1 0 001-1v-6l-2-2v7H5V8h6l-1-2z"/></svg>
+                 Voir sur Dofusbook
+               </a>
+             </div>
+           </div>`
+        : `<div class="bc-no-screen">
+             <div class="bc-no-screen-icon">📸</div>
+             <div class="bc-no-screen-text">Screenshot à venir</div>
+             <a href="${b.lien_dofusbook}" target="_blank" rel="noopener" class="bc-cta-btn" style="margin-top:8px">
+               Voir sur Dofusbook →
+             </a>
+           </div>`;
+
+      // Conseil Tarkan
+      const tipHTML = b.description && b.description !== 'Description à venir.'
+        ? `<div class="bc-tip">
+             <div class="bc-tip-header">
+               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+               Conseil de Tarkan
+             </div>
+             <div class="bc-tip-text">
+               ${b.description.split('.').filter(s => s.trim()).map(s => `<span>${s.trim()}</span>`).join('')}
+             </div>
+           </div>`
+        : '';
+
+      // Stats footer — adapté selon le type de build
+      let statsHtml = '';
+      if (b.element === 'Pou') {
+        // Build Do Poussée : afficher Do Pou + Do Neutre à la place de la stat principale + puissance
+        statsHtml = `
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.pa}</span><span class="bc-stat-lbl">PA</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.pm}</span><span class="bc-stat-lbl">PM</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.po || 0}</span><span class="bc-stat-lbl">PO</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${(b.stats.vita/1000).toFixed(1)}k</span><span class="bc-stat-lbl">Vita</span></div>
+          <div class="bc-stat"><span class="bc-stat-val" style="color:#fb923c">${b.stats.do_pou || 0}</span><span class="bc-stat-lbl">Do Pou</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.ini}</span><span class="bc-stat-lbl">Init</span></div>`;
+      } else {
+        const mainStat = b.stats.force || b.stats.intelligence || b.stats.chance || b.stats.agilite || 0;
+        const statName = b.stats.force ? 'Force' : b.stats.intelligence ? 'Intel' : b.stats.chance ? 'Chance' : 'Agi';
+        statsHtml = `
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.pa}</span><span class="bc-stat-lbl">PA</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.pm}</span><span class="bc-stat-lbl">PM</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.po || 0}</span><span class="bc-stat-lbl">PO</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${(b.stats.vita/1000).toFixed(1)}k</span><span class="bc-stat-lbl">Vita</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${mainStat}</span><span class="bc-stat-lbl">${statName}</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.puissance || 0}</span><span class="bc-stat-lbl">Puis.</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.ini}</span><span class="bc-stat-lbl">Init</span></div>`;
+      }
+
+      // Conseil Stats
+      const statsConseilHTML = b.conseil_stats && b.conseil_stats.trim() !== ''
+        ? `<div class="stats-conseil-block">
+             <div class="stats-conseil-header">
+               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+               CONSEIL STATS — ${b.classe.toUpperCase()}
+             </div>
+             <div class="stats-conseil-text">${b.conseil_stats}</div>
+           </div>`
+        : '';
+
+      return `
+        <div class="build-card-new" onclick="window.open('${b.lien_dofusbook}','_blank')">
+          <div class="bc-header">
+            <div class="bc-class-img">
+              <img src="../assets/classes/${b.classe.toLowerCase()}.jpg" alt="${b.classe}">
+            </div>
+            <div class="bc-title-wrap">
+              <div class="bc-name">${medal ? medal + ' ' : ''}${b.nom}</div>
+              <div class="bc-tags">
+                <span class="tag tag-element-${elKey}">${b.element}</span>
+                <span class="tag tag-budget-${bgtKey}">${b.budget}</span>
+              </div>
+            </div>
+            <div class="bc-tier ${tierCls}">${b.tier}</div>
+          </div>
+          ${screenHTML}
+          ${tipHTML}
+          ${statsConseilHTML}
+          <div class="bc-footer">
+            ${statsHtml}
+            <a href="${b.lien_dofusbook}" target="_blank" rel="noopener" class="bc-dofusbook-link" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3h7v7l-2-2-5 5-2-2 5-5-3-3zm-4 3H4a1 1 0 00-1 1v13a1 1 0 001 1h13a1 1 0 001-1v-6l-2-2v7H5V8h6l-1-2z"/></svg>
+              Dofusbook
+            </a>
+          </div>
+        </div>`;
+    }
+
+    // Filter setters
+    function setCat(v, btn) {
+      fCat = v;
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
+    function setCls(v, btn) {
+      fClass = v;
+      document.querySelectorAll('.class-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
+    function setEl(v, btn) {
+      fEl = v;
+      btn.closest('.filter-bar').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
+    function setBgt(v, btn) {
+      fBgt = v;
+      btn.closest('.filter-bar').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
+    function onSearch(v) { fSearch = v; render(); }
+
+    init();
+  </script>
+</body>
+</html>
