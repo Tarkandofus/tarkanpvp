@@ -226,5 +226,35 @@
     "date_ajout": "2025-03-18",
     "auteur": "Tarkan",
     "vues": 0
+  },
+  {
+    "id": "hupper-do-pou-3-5",
+    "nom": "HUPPER DO POU 3.5",
+    "classe": "Huppermage",
+    "element": "Pou",
+    "budget": "Élevé",
+    "categorie": "mes-equipements",
+    "tier": "S",
+    "priorite": 4,
+    "description": "On remplace le petit trophée 32 do pou par un Sylvestre pour les 2 PO et le regen que le Dofus apporte. Si tu as les moyens essaye d'avoir un exo PO (sur les bottes par exemple). Si tu as les moyens mets ton familier en acuité du Noeul pour profiter d'un maximum de PO en début de tour.",
+    "conseil_fm": "",
+    "conseil_stats": "",
+    "image_build": "assets/builds/hupper-do-pou-3-5.png",
+    "lien_dofusbook": "https://d-bk.net/fr/d/1U6OJ",
+    "stats": {
+      "vita": 5345,
+      "do_pou": 528,
+      "sagesse": 590,
+      "pa": 12,
+      "pm": 5,
+      "po": 3,
+      "ini": 3600
+    },
+    "equipements": [],
+    "sorts_cles": [],
+    "variantes": [],
+    "date_ajout": "2025-03-18",
+    "auteur": "Tarkan",
+    "vues": 0
   }
 ]
