@@ -10,7 +10,7 @@
     "priorite": 1,
     "description": "Tu peux changer le Bwak feu par un Bwak eau si tu veux. Oublie pas de mettre un dommage neutre en plus si ton stuff. Si tu veux jouer encore plus agressif tu peux mettre un Koliphant terre. Si tu as les moyens met ton familier en patience de thomondor.",
     "conseil_fm": "OVER VITA sur le maximum de tes items ! C'est toujours mieux d'avoir des over vita que des over résistance, car si l'adversaire en face de toi ne joue pas dans l'élément de tes over ils ne servent à rien, tandis que la vitalité te servira toujours ! Surtout sur le Iop qui joue autour du sort vitalité (Dokoko, Sylvestre).",
-    "conseil_stats": "398 en force et 3 en vitalité : Le Iop a besoin de beaucoup de stats pour frapper fort donc je préfère jouer agressif avec un maximum de stats en force et rien en vita, pour pallier à ça, j'ai justement mis mes items en full over vita.",
+    "conseil_stats": "398 en stats et 3 en vitalité : Le Iop a besoin de beaucoup de stats pour frapper fort donc je préfère jouer agressif avec un maximum de stats et rien en vita, pour pallier à ça, j'ai justement mis mes items en full over vita.",
     "image_build": "assets/builds/iop-terre-3-5.png",
     "lien_dofusbook": "https://d-bk.net/fr/d/1U61E",
     "stats": {
@@ -141,8 +141,8 @@
     "tier": "S",
     "priorite": 1,
     "description": "Je joue à la place du pilier la faux de Thanatena contre Osa et Sadi par exemple. Tu peux remplacer également les bottes AP par des bottes Mériana si tu les as et du coup changer l'anneau belladone par le deuxième anneau AP ce qui te donne un PA en trop pour enlever pourquoi pas le Kougnard et mettre une DD armure ou autre. Contre une classe RET PA retire le Kougnard et mets un Chienchien tigré idéalement avec l'effet légendaire \"Carapace de Scarafeuille\". Contre une classe RET PM retire le Kougnard et mets un Tanuk idéalement avec l'effet légendaire \"Écorce de l'Abraknyde\". Si tu as les moyens mets ton Kougnard en patience de thomondor ou acuité de noeul.",
-    "conseil_fm": "",
-    "conseil_stats": "",
+    "conseil_fm": "OVER VITA sur le maximum de tes items ! C'est toujours mieux d'avoir des over vita que des over résistance, car si l'adversaire en face de toi ne joue pas dans l'élément de tes over ils ne servent à rien, tandis que la vitalité te servira toujours ! Sur le reste des items où l'over vita est impossible essaye d'avoir des % do sorts.",
+    "conseil_stats": "398 en stats et 3 en vitalité pour tous les builds mono-élément, sauf pour le mode multi où on va faire un 150 all et 195 en vitalité. Bien évidemment 995 vita sur le mode do pou.",
     "image_build": "assets/builds/hupper-multi-3-5.png",
     "lien_dofusbook": "https://d-bk.net/fr/d/1U6M1",
     "stats": {
