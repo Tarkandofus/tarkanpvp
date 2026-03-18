@@ -222,7 +222,7 @@
   <script>
     // ── Twitch embed dynamique (hostname auto-détecté) ──
     (function() {
-      const parent = window.location.hostname || 'localhost';
+      const parent = window.location.hostname || 'tarkanpvp.netlify.app';
       const iframe = document.createElement('iframe');
       iframe.className = 'live-embed';
       iframe.src = `https://player.twitch.tv/?channel=tarkan_____&parent=${parent}&autoplay=false`;

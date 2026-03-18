@@ -733,6 +733,19 @@
                 <div class="fm-conseil-text">${buildWithFm.conseil_fm}</div>
               </div>`;
           }
+
+          // Conseil Stats (même style que FM, juste en dessous)
+          const buildWithStats = builds.find(b => b.conseil_stats && b.conseil_stats.trim() !== '');
+          if (buildWithStats) {
+            html += `
+              <div class="fm-conseil-block" style="border-color:rgba(59,130,246,0.3);background:linear-gradient(135deg,rgba(59,130,246,0.08),rgba(59,130,246,0.03));">
+                <div class="fm-conseil-header" style="color:#60a5fa;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                  CONSEIL STATS — ${className.toUpperCase()}
+                </div>
+                <div class="fm-conseil-text">${buildWithStats.conseil_stats}</div>
+              </div>`;
+          }
         }
 
         html += `</div>`; // fin class-section header wrapper
@@ -837,7 +850,6 @@
           </div>
           ${screenHTML}
           ${tipHTML}
-          ${statsConseilHTML}
           <div class="bc-footer">
             ${statsHtml}
             <a href="${b.lien_dofusbook}" target="_blank" rel="noopener" class="bc-dofusbook-link" onclick="event.stopPropagation()">
