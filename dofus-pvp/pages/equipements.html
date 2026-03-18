@@ -794,13 +794,25 @@
       // Stats footer — adapté selon le type de build
       let statsHtml = '';
       if (b.element === 'Pou') {
-        // Build Do Poussée : afficher Do Pou + Do Neutre à la place de la stat principale + puissance
         statsHtml = `
           <div class="bc-stat"><span class="bc-stat-val">${b.stats.pa}</span><span class="bc-stat-lbl">PA</span></div>
           <div class="bc-stat"><span class="bc-stat-val">${b.stats.pm}</span><span class="bc-stat-lbl">PM</span></div>
           <div class="bc-stat"><span class="bc-stat-val">${b.stats.po || 0}</span><span class="bc-stat-lbl">PO</span></div>
           <div class="bc-stat"><span class="bc-stat-val">${(b.stats.vita/1000).toFixed(1)}k</span><span class="bc-stat-lbl">Vita</span></div>
           <div class="bc-stat"><span class="bc-stat-val" style="color:#fb923c">${b.stats.do_pou || 0}</span><span class="bc-stat-lbl">Do Pou</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.ini}</span><span class="bc-stat-lbl">Init</span></div>`;
+      } else if (b.element === 'Multi') {
+        // Huppermage : afficher toutes les stats élémentaires
+        statsHtml = `
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.pa}</span><span class="bc-stat-lbl">PA</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.pm}</span><span class="bc-stat-lbl">PM</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.po || 0}</span><span class="bc-stat-lbl">PO</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${(b.stats.vita/1000).toFixed(1)}k</span><span class="bc-stat-lbl">Vita</span></div>
+          <div class="bc-stat"><span class="bc-stat-val" style="color:#d97706">${b.stats.force || 0}</span><span class="bc-stat-lbl">For</span></div>
+          <div class="bc-stat"><span class="bc-stat-val" style="color:#f87171">${b.stats.intelligence || 0}</span><span class="bc-stat-lbl">Int</span></div>
+          <div class="bc-stat"><span class="bc-stat-val" style="color:#2dd4bf">${b.stats.chance || 0}</span><span class="bc-stat-lbl">Cha</span></div>
+          <div class="bc-stat"><span class="bc-stat-val" style="color:#60a5fa">${b.stats.agilite || 0}</span><span class="bc-stat-lbl">Agi</span></div>
+          <div class="bc-stat"><span class="bc-stat-val">${b.stats.puissance || 0}</span><span class="bc-stat-lbl">Puis</span></div>
           <div class="bc-stat"><span class="bc-stat-val">${b.stats.ini}</span><span class="bc-stat-lbl">Init</span></div>`;
       } else {
         const mainStat = b.stats.force || b.stats.intelligence || b.stats.chance || b.stats.agilite || 0;
