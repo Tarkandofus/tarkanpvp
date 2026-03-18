@@ -577,13 +577,6 @@
           <button class="filter-btn" onclick="setEl('Eau',this)">💧 Eau</button>
           <button class="filter-btn" onclick="setEl('Pou',this)">➡ Do Pou</button>
         </div>
-        <div class="filter-bar">
-          <span class="filter-label">Budget :</span>
-          <button class="filter-btn active" onclick="setBgt('all',this)">Tous</button>
-          <button class="filter-btn" onclick="setBgt('Faible',this)">💸 Faible</button>
-          <button class="filter-btn" onclick="setBgt('Moyen',this)">💰 Moyen</button>
-          <button class="filter-btn" onclick="setBgt('Élevé',this)">💎 Élevé</button>
-        </div>
         <span class="build-count" id="buildCount">-- builds</span>
       </div>
 
@@ -843,7 +836,6 @@
               <div class="bc-name">${medal ? medal + ' ' : ''}${b.nom}</div>
               <div class="bc-tags">
                 <span class="tag tag-element-${elKey}">${b.element}</span>
-                <span class="tag tag-budget-${bgtKey}">${b.budget}</span>
               </div>
             </div>
             <div class="bc-tier ${tierCls}">${b.tier}</div>
