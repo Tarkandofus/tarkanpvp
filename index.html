@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Tarkan PvP - Builds, Tier List & Meta PvP</title>
+  <meta name="description" content="La référence PvP DOFUS : builds optimisés, tier list, meta PvP pour toutes les classes. Consultez les meilleurs stuffs PvP du serveur.">
+  <meta name="keywords" content="build pvp dofus, stuff pvp dofus, dofus tier list pvp, meta pvp dofus, kolizéum dofus, builds dofus 2025">
+  <meta name="author" content="Tarkan PvP">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tarkan PvP - Builds & Meta PvP">
+  <meta property="og:description" content="La référence PvP DOFUS : builds optimisés, tier list et meta pour toutes les classes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dofus-pvp.fr">
+  <meta property="og:image" content="assets/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tarkan PvP">
+  <meta name="twitter:description" content="La référence PvP DOFUS. Builds, Tier List, Meta.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://dofus-pvp.fr">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <script src="components/colosseum-bg.js"></script>
+
+  <!-- =================== NAVBAR =================== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <img src="assets/logo-tarkan.png" alt="Tarkan PvP" style="width:38px;height:38px;object-fit:cover;border-radius:6px;">
+        </div>
+        <span>Tarkan</span>&nbsp;PvP
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="pages/equipements.html" data-page="equipements">⚙ Équipements</a></li>
+        <li><a href="pages/tierlist.html" data-page="tierlist">🏆 Tier List PvP</a></li>
+        <li><a href="pages/meta.html" data-page="meta">📊 Meta PvP</a></li>
+        <li><a href="pages/youtube.html" data-page="youtube">▶ YouTube</a></li>
+        <li><a href="pages/statzeum.html" data-page="statzeum">🔬 Statzeum <span class="nav-badge-soon">Soon</span></a></li>
+      </ul>
+
+      <div class="nav-social">
+        <!-- Code créateur -->
+        <div class="creator-code" onclick="copyCreatorCode(this)" title="Cliquer pour copier">
+          <span class="creator-label">Code créateur</span>
+          <span class="creator-name">TARKAN</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:0.6;flex-shrink:0"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </div>
+        <!-- Twitch -->
+        <a href="https://www.twitch.tv/tarkan_____" class="social-btn" title="Twitch" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#9147ff"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@TarkanDofus" class="social-btn" title="YouTube" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <!-- X -->
+        <a href="https://x.com/TarkanDofus" class="social-btn" title="X / Twitter" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.856L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@tarkandofus" class="social-btn" title="TikTok" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        </a>
+        <!-- Discord -->
+        <a href="https://discord.gg/cpbR5Fv" class="social-btn" title="Discord" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.04.033.05a19.909 19.909 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        </a>
+      </div>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =================== MAIN CONTENT =================== -->
+  <main class="page-content">
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero">
+        <h1 class="hero-title">
+          La Référence PvP<br><span class="highlight">Tryhard 1vs1</span>
+        </h1>
+        <p class="hero-subtitle">
+          Builds optimisés, tier list à jour, meta PvP analysée.
+          Tout ce dont tu as besoin pour dominer le kolizéum.
+        </p>
+        <div class="hero-actions">
+          <a href="pages/equipements.html" class="btn btn-primary">⚙ Voir les builds</a>
+          <a href="pages/tierlist.html" class="btn btn-secondary">🏆 Tier List PvP</a>
+        </div>
+      </section>
+
+      <!-- LIVE SECTION -->
+      <section class="live-section mb-40">
+        <div class="section-header">
+          <h2 class="section-title">🔴 Live en cours</h2>
+          <p class="section-subtitle">En live tous les jours, rejoins le stream !</p>
+        </div>
+        <div class="live-container">
+          <div id="twitchEmbed" style="width:100%;aspect-ratio:16/9;background:var(--bg-deep);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;color:var(--text-muted)">
+              <div style="font-size:40px;margin-bottom:12px">🟣</div>
+              <div style="font-family:var(--font-display);font-size:16px;color:var(--accent-gold)">Chargement du live...</div>
+            </div>
+          </div>
+          <div class="live-status">
+            <div class="live-dot"></div>
+            LIVE
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; margin-top:14px; flex-wrap:wrap;">
+          <a href="https://www.twitch.tv/tarkan_____" class="btn btn-outline" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#9147ff"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+            Chaîne Twitch
+          </a>
+          <a href="https://www.youtube.com/@TarkanDofus" class="btn btn-outline" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            Chaîne YouTube
+          </a>
+          <a href="https://discord.gg/cpbR5Fv" class="btn btn-outline" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.04.033.05a19.909 19.909 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            Rejoindre le Discord
+          </a>
+          <a href="https://www.tiktok.com/@tarkandofus" class="btn btn-outline" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+            TikTok
+          </a>
+        </div>
+      </section>
+
+      <!-- BUILDS POPULAIRES -->
+      <section class="mb-40">
+        <div class="section-header">
+          <h2 class="section-title">🔥 Builds populaires</h2>
+          <p class="section-subtitle">Les builds les plus consultés cette semaine</p>
+        </div>
+
+        <div class="builds-grid" id="popularBuilds">
+          <!-- Généré par JS -->
+          <div class="build-card">
+            <div class="build-card-header">
+              <div class="build-class-icon">⚔️</div>
+              <div class="build-card-info">
+                <div class="build-card-name">Chargement...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:28px;">
+          <a href="pages/equipements.html" class="btn btn-secondary">Voir tous les builds →</a>
+        </div>
+      </section>
+
+      <!-- TIER LIST RAPIDE -->
+      <section class="mb-40">
+        <div class="section-header">
+          <h2 class="section-title">🏆 Tier List PvP rapide</h2>
+          <p class="section-subtitle">Classement des classes en Saison 13 — mis à jour régulièrement</p>
+        </div>
+
+        <div id="homeTierList"><!-- Généré par JS --></div>
+
+        <div style="text-align:center; margin-top:24px;">
+          <a href="pages/tierlist.html" class="btn btn-secondary">Voir la tier list complète →</a>
+        </div>
+      </section>
+
+      <!-- BUILDS RÉCENTS -->
+      <section class="mb-40">
+        <div class="section-header">
+          <h2 class="section-title">🆕 Builds récents</h2>
+          <p class="section-subtitle">Les derniers builds ajoutés à la base de données</p>
+        </div>
+        <div class="builds-grid" id="recentBuilds"><!-- Généré par JS --></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">⚔ Tarkan PvP</div>
+          <p class="footer-desc">
+            La ressource communautaire PvP DOFUS. Builds, Tier List, Meta, Guides.
+            Contenu créé par et pour la communauté PvP.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="pages/equipements.html">Builds</a>
+          <a href="pages/tierlist.html">Tier List</a>
+          <a href="pages/meta.html">Meta</a>
+          <a href="pages/youtube.html">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Tarkan PvP — Site non officiel, non affilié à Ankama</span>
+        <span>Site dédié à la communauté PvP DOFUS 🎮</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =================== SCRIPTS =================== -->
+  <script src="components/app.js"></script>
+  <script>
+    // ── Twitch embed dynamique (hostname auto-détecté) ──
+    (function() {
+      const parent = window.location.hostname || 'tarkanpvp.netlify.app';
+      const iframe = document.createElement('iframe');
+      iframe.className = 'live-embed';
+      iframe.src = `https://player.twitch.tv/?channel=tarkan_____&parent=${parent}&autoplay=false`;
+      iframe.allowFullscreen = true;
+      iframe.setAttribute('allow', 'autoplay');
+      document.getElementById('twitchEmbed').replaceWith(iframe);
+    })();
+    // Charger les données et construire la page d'accueil
+    document.addEventListener('DOMContentLoaded', async () => {
+      const builds = await loadJSON('../data/builds.json') || await loadJSON('data/builds.json');
+      const classes = await loadJSON('../data/classes.json') || await loadJSON('data/classes.json');
+      const meta = await loadJSON('../data/meta.json') || await loadJSON('data/meta.json');
+
+      // Builds populaires (top 3 par vues)
+      const popular = [...builds].sort((a,b) => b.vues - a.vues).slice(0,3);
+      document.getElementById('popularBuilds').innerHTML = popular.map(b => renderBuildCard(b)).join('');
+
+      // Tier list home (S et A uniquement)
+      const tiers = ['S','A'];
+      document.getElementById('homeTierList').innerHTML = tiers.map(tier => {
+        const classesInTier = classes.filter(c => c.tier === tier);
+        return renderTierRow(tier, classesInTier);
+      }).join('');
+
+      // Builds récents (3 derniers)
+      const recent = [...builds].sort((a,b) => new Date(b.date_ajout) - new Date(a.date_ajout)).slice(0,3);
+      document.getElementById('recentBuilds').innerHTML = recent.map(b => renderBuildCard(b)).join('');
+
+      // Active nav
+      setActiveNav('');
+    });
+  </script>
+</body>
+</html>

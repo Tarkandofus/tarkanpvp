@@ -1,0 +1,164 @@
+{
+  "saison": "Saison 13 - Janvier 2025",
+  "derniere_maj": "2025-02-10",
+  "classes_jouees": [
+    {
+      "classe": "Iop",
+      "pourcentage": 82,
+      "element": "Terre"
+    },
+    {
+      "classe": "Xelor",
+      "pourcentage": 72,
+      "element": "Feu"
+    },
+    {
+      "classe": "Eliotrope",
+      "pourcentage": 65,
+      "element": "Air"
+    },
+    {
+      "classe": "Eniripsa",
+      "pourcentage": 65,
+      "element": "Air"
+    },
+    {
+      "classe": "Sram",
+      "pourcentage": 78,
+      "element": "Terre"
+    },
+    {
+      "classe": "Cra",
+      "pourcentage": 70,
+      "element": "Air"
+    },
+    {
+      "classe": "Pandawa",
+      "pourcentage": 60,
+      "element": "Eau"
+    },
+    {
+      "classe": "Feca",
+      "pourcentage": 62,
+      "element": "Feu"
+    },
+    {
+      "classe": "Ecaflip",
+      "pourcentage": 55,
+      "element": "Feu"
+    },
+    {
+      "classe": "Huppermage",
+      "pourcentage": 52,
+      "element": "Multi"
+    }
+  ],
+  "classes_performantes": [
+    {
+      "classe": "Xelor",
+      "win_rate": 63,
+      "element": "Feu"
+    },
+    {
+      "classe": "Sram",
+      "win_rate": 61,
+      "element": "Terre"
+    },
+    {
+      "classe": "Eliotrope",
+      "win_rate": 59,
+      "element": "Air"
+    },
+    {
+      "classe": "Iop",
+      "win_rate": 58,
+      "element": "Terre"
+    },
+    {
+      "classe": "Cra",
+      "win_rate": 55,
+      "element": "Air"
+    },
+    {
+      "classe": "Feca",
+      "win_rate": 54,
+      "element": "Feu"
+    },
+    {
+      "classe": "Huppermage",
+      "win_rate": 54,
+      "element": "Multi"
+    },
+    {
+      "classe": "Pandawa",
+      "win_rate": 53,
+      "element": "Eau"
+    },
+    {
+      "classe": "Forgelance",
+      "win_rate": 53,
+      "element": "Air"
+    },
+    {
+      "classe": "Ecaflip",
+      "win_rate": 52,
+      "element": "Feu"
+    }
+  ],
+  "elements_utilises": [
+    {
+      "element": "Feu",
+      "pourcentage": 38,
+      "couleur": "#e74c3c"
+    },
+    {
+      "element": "Air",
+      "pourcentage": 28,
+      "couleur": "#3498db"
+    },
+    {
+      "element": "Terre",
+      "pourcentage": 22,
+      "couleur": "#8B4513"
+    },
+    {
+      "element": "Eau",
+      "pourcentage": 9,
+      "couleur": "#1abc9c"
+    },
+    {
+      "element": "Multi",
+      "pourcentage": 3,
+      "couleur": "#9b59b6"
+    }
+  ],
+  "tier_list": {
+    "S": [
+      "Iop",
+      "Xelor",
+      "Sram",
+      "Eliotrope"
+    ],
+    "A": [
+      "Feca",
+      "Ecaflip",
+      "Eniripsa",
+      "Cra",
+      "Sadida",
+      "Pandawa",
+      "Forgelance",
+      "Huppermage"
+    ],
+    "B": [
+      "Osamodas",
+      "Enutrof",
+      "Sacrieur",
+      "Roublard",
+      "Steamer",
+      "Ouginak"
+    ],
+    "C": [
+      "Zobal"
+    ]
+  }
+}

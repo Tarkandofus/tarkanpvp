@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidéos YouTube — Tarkan PvP</title>
+  <meta name="description" content="Toutes les vidéos PvP DOFUS de Tarkan : guides, builds, kolizéum, tier list et shorts.">
+  <link rel="canonical" href="https://dofus-pvp.fr/pages/youtube.html">
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    .yt-banner {
+      background: linear-gradient(135deg, #1a0000, #2a0500);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .yt-avatar-wrap {
+      width: 76px; height: 76px; border-radius: 50%; overflow: hidden;
+      border: 3px solid rgba(239,68,68,0.5); flex-shrink: 0;
+      background: #300; display: flex; align-items: center; justify-content: center; font-size: 32px;
+    }
+    .yt-avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .yt-info { flex: 1; min-width: 180px; }
+    .yt-name { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+    .yt-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+    .yt-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+    .yt-stat { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+    .yt-stat strong { display: block; font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-primary); }
+    .yt-sub-btn {
+      background: #ff0000; color: #fff;
+      font-family: var(--font-display); font-weight: 700; font-size: 14px;
+      padding: 12px 24px; border-radius: var(--radius-sm);
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; transition: all 0.2s; white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(239,68,68,0.3);
+    }
+    .yt-sub-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(239,68,68,0.5); }
+
+    .latest-embed {
+      border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid rgba(239,68,68,0.2);
+      aspect-ratio: 16/9; background: var(--bg-deep); margin-bottom: 48px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .latest-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    .video-card {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md); overflow: hidden; cursor: pointer; transition: all 0.25s;
+    }
+    .video-card:hover { border-color: rgba(239,68,68,0.4); transform: translateY(-4px); box-shadow: 0 8px 28px rgba(239,68,68,0.12); }
+    .video-thumb { position: relative; aspect-ratio: 16/9; background: var(--bg-deep); overflow: hidden; }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .video-card:hover .video-thumb img { transform: scale(1.04); }
+    .video-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.35);
+      display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
+    }
+    .video-card:hover .video-overlay { opacity: 1; }
+    .play-circle {
+      width: 54px; height: 54px; background: rgba(255,0,0,0.9); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-dur {
+      position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.85);
+      color: #fff; font-size: 11px; font-family: var(--font-mono); padding: 2px 6px; border-radius: 3px;
+    }
+    .video-info { padding: 12px 14px; }
+    .video-title {
+      font-family: var(--font-display); font-size: 14px; font-weight: 700;
+      color: var(--text-primary); line-height: 1.4; margin-bottom: 6px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .video-meta { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); display: flex; gap: 10px; }
+
+    .shorts-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 14px; margin-bottom: 48px;
+    }
+    .short-card {
+      background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md); overflow: hidden; cursor: pointer; transition: all 0.25s;
+    }
+    .short-card:hover { border-color: rgba(239,68,68,0.4); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(239,68,68,0.12); }
+    .short-thumb { position: relative; aspect-ratio: 9/16; background: var(--bg-deep); overflow: hidden; }
+    .short-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .short-card:hover .short-thumb img { transform: scale(1.04); }
+    .short-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
+    }
+    .short-card:hover .short-overlay { opacity: 1; }
+    .short-badge {
+      position: absolute; top: 8px; left: 8px; background: #ff0000; color: #fff;
+      font-size: 9px; font-weight: 700; font-family: var(--font-mono); padding: 2px 6px; border-radius: 3px;
+    }
+    .short-info { padding: 10px 12px; }
+    .short-title {
+      font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--text-primary);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4;
+    }
+
+    .skeleton { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; }
+    .skel-thumb { background: var(--bg-elevated); }
+    .skel-info { padding: 12px 14px; }
+    .skel-line { height: 12px; background: var(--bg-elevated); border-radius: 4px; margin-bottom: 8px; }
+    .skel-line.w60 { width: 60%; }
+    @keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+    .skeleton { animation: pulse 1.8s ease infinite; }
+
+    #videoModal .modal { max-width: 900px; }
+    .modal-vid-frame { aspect-ratio: 16/9; background: #000; }
+    .modal-vid-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    @media (max-width: 600px) { .shorts-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
+  </style>
+</head>
+<body>
+  <script src="../components/colosseum-bg.js"></script>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-icon"><img src="../assets/logo-tarkan.png" alt="Tarkan PvP" style="width:38px;height:38px;object-fit:cover;border-radius:6px;"></div>
+        <span>Tarkan</span>&nbsp;PvP
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="equipements.html" data-page="equipements">⚙ Équipements</a></li>
+        <li><a href="tierlist.html" data-page="tierlist">🏆 Tier List PvP</a></li>
+        <li><a href="meta.html" data-page="meta">📊 Meta PvP</a></li>
+        <li><a href="youtube.html" data-page="youtube">▶ YouTube</a></li>
+        <li><a href="statzeum.html" data-page="statzeum">🔬 Statzeum <span class="nav-badge-soon">Soon</span></a></li>
+      </ul>
+      <div class="nav-social">
+        <div class="creator-code" onclick="copyCreatorCode(this)" title="Cliquer pour copier"><span class="creator-label">Code créateur</span><span class="creator-name">TARKAN</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:0.6;flex-shrink:0"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
+        <a href="https://www.twitch.tv/tarkan_____" class="social-btn" title="Twitch" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="#9147ff"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg></a>
+        <a href="https://www.youtube.com/@TarkanDofus" class="social-btn" title="YouTube" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://x.com/TarkanDofus" class="social-btn" title="X" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.856L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.tiktok.com/@tarkandofus" class="social-btn" title="TikTok" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
+        <a href="https://discord.gg/cpbR5Fv" class="social-btn" title="Discord" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="#5865f2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.04.033.05a19.909 19.909 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></a>
+      </div>
+      <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+
+      <!-- CHANNEL BANNER -->
+      <div class="yt-banner">
+        <div class="yt-avatar-wrap" id="channelAvatar">▶</div>
+        <div class="yt-info">
+          <div class="yt-name">Tarkan PvP</div>
+          <div class="yt-desc">Guides PvP DOFUS, builds, kolizéum, tier list. Le contenu PvP de référence.</div>
+          <div class="yt-stats">
+            <div class="yt-stat"><strong id="statSubs">--</strong>Abonnés</div>
+            <div class="yt-stat"><strong id="statVideos">--</strong>Vidéos</div>
+            <div class="yt-stat"><strong id="statViews">--</strong>Vues totales</div>
+          </div>
+        </div>
+        <a href="https://www.youtube.com/@TarkanDofus?sub_confirmation=1" class="yt-sub-btn" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          S'abonner
+        </a>
+      </div>
+
+      <!-- DERNIÈRE VIDÉO -->
+      <div style="margin-bottom:48px">
+        <div class="section-header">
+          <h2 class="section-title">▶ Dernière vidéo</h2>
+        </div>
+        <div class="latest-embed" id="latestEmbed">
+          <div style="text-align:center;color:var(--text-muted)">
+            <div style="font-size:36px;margin-bottom:12px">⏳</div>
+            <div style="font-family:var(--font-display)">Chargement...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHORTS -->
+      <div style="margin-bottom:48px">
+        <div class="section-header">
+          <h2 class="section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000" style="flex-shrink:0"><path d="M17.77 10.32l-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.23-2.53-5.06-1.56L6 6.94c-1.29.68-2.07 2.09-1.98 3.57.08 1.33.81 2.49 1.98 3.12l1.2.5L6 14.94c-1.84.96-2.53 3.23-1.56 5.06.97 1.83 3.23 2.53 5.06 1.56l8.5-4.5c1.29-.68 2.07-2.09 1.98-3.57-.08-1.33-.81-2.49-1.98-3.12l-.23-.05zM10 14.65V9.35L15 12l-5 2.65z"/></svg>
+            SHORTS
+          </h2>
+        </div>
+        <div class="shorts-grid" id="shortsGrid">
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:9/16"></div></div>
+        </div>
+      </div>
+
+      <!-- TOUTES LES VIDÉOS -->
+      <div style="margin-bottom:48px">
+        <div class="section-header">
+          <h2 class="section-title">🎬 TOUTES LES VIDÉOS</h2>
+          <p class="section-subtitle" id="videosSubtitle">Chargement en cours...</p>
+        </div>
+        <div class="videos-grid" id="allVideosGrid">
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-info"><div class="skel-line"></div><div class="skel-line w60"></div></div></div>
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-info"><div class="skel-line"></div><div class="skel-line w60"></div></div></div>
+          <div class="skeleton"><div class="skel-thumb" style="aspect-ratio:16/9"></div><div class="skel-info"><div class="skel-line"></div><div class="skel-line w60"></div></div></div>
+        </div>
+        <div style="text-align:center;margin-top:28px">
+          <a href="https://www.youtube.com/@TarkanDofus/videos" class="btn btn-secondary" target="_blank" rel="noopener">
+            Voir toutes les vidéos sur YouTube →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal-overlay" id="videoModal" style="z-index:3000">
+    <div class="modal" style="max-width:900px">
+      <div class="modal-header">
+        <h2 style="font-family:var(--font-display);font-size:15px;margin:0;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80%" id="modalVideoTitle">Lecture</h2>
+        <button class="modal-close" onclick="closeVideoModal()">✕</button>
+      </div>
+      <div class="modal-vid-frame">
+        <iframe id="videoFrame" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2025 Tarkan PvP — Non affilié à Ankama</span>
+        <a href="../index.html" style="color:var(--accent-gold)">← Retour à l'accueil</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../components/app.js"></script>
+  <script>
+    const YT_KEY    = 'AIzaSyBXbtHUOLqOWPTTps5OGX_ZjiQ1A3mZ0Ww';
+    const YT_HANDLE = 'TarkanDofus';
+
+    // ── Helpers ──
+    function fmtN(n) {
+      n = parseInt(n)||0;
+      if (n>=1e6) return (n/1e6).toFixed(1)+'M';
+      if (n>=1e3) return (n/1e3).toFixed(1)+'k';
+      return String(n);
+    }
+    function fmtDate(iso) {
+      return new Date(iso).toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'});
+    }
+    function fmtDur(iso) {
+      if (!iso) return '';
+      const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+      if (!m) return '';
+      const h=+m[1]||0, mn=+m[2]||0, s=+m[3]||0;
+      if (h>0) return `${h}:${String(mn).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      return `${mn}:${String(s).padStart(2,'0')}`;
+    }
+    function isShort(v) {
+      const title = (v.snippet?.title||'').toLowerCase();
+      const tags  = (v.snippet?.tags||[]).join(' ').toLowerCase();
+      const dur   = v.contentDetails?.duration||'';
+      const m = dur.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+      const sec = (+m?.[1]||0)*3600 + (+m?.[2]||0)*60 + (+m?.[3]||0);
+      return sec <= 180 || title.includes('#short') || tags.includes('short');
+    }
+    async function ytGet(ep) {
+      const r = await fetch(`https://www.googleapis.com/youtube/v3/${ep}&key=${YT_KEY}`);
+      if (!r.ok) throw new Error('YT '+r.status);
+      return r.json();
+    }
+
+    // ── Render ──
+    function videoCard(v) {
+      const id    = v.id;
+      const thumb = v.snippet.thumbnails?.maxres?.url || v.snippet.thumbnails?.high?.url || '';
+      const title = v.snippet.title;
+      const safeT = title.replace(/`/g,"'");
+      const dur   = fmtDur(v.contentDetails?.duration);
+      const views = fmtN(v.statistics?.viewCount);
+      return `<div class="video-card" onclick="openVideo('${id}',\`${safeT}\`)">
+        <div class="video-thumb">
+          <img src="${thumb}" alt="${title}" loading="lazy">
+          <div class="video-overlay"><div class="play-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
+          ${dur?`<div class="video-dur">${dur}</div>`:''}
+        </div>
+        <div class="video-info">
+          <div class="video-title">${title}</div>
+          <div class="video-meta"><span>📅 ${fmtDate(v.snippet.publishedAt)}</span>${views?`<span>👁 ${views}</span>`:''}</div>
+        </div>
+      </div>`;
+    }
+    function shortCard(v) {
+      const id    = v.id;
+      const thumb = v.snippet.thumbnails?.high?.url || v.snippet.thumbnails?.medium?.url || '';
+      const title = v.snippet.title;
+      const safeT = title.replace(/`/g,"'");
+      return `<div class="short-card" onclick="openVideo('${id}',\`${safeT}\`)">
+        <div class="short-thumb">
+          <img src="${thumb}" alt="${title}" loading="lazy">
+          <div class="short-overlay"><div class="play-circle" style="width:42px;height:42px"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>
+          <div class="short-badge">SHORT</div>
+        </div>
+        <div class="short-info"><div class="short-title">${title}</div></div>
+      </div>`;
+    }
+
+    // ── Modal ──
+    function openVideo(id, title) {
+      document.getElementById('modalVideoTitle').textContent = title||'Lecture';
+      document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      document.getElementById('videoModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoModal() {
+      document.getElementById('videoFrame').src = '';
+      document.getElementById('videoModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('videoModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('videoModal')) closeVideoModal();
+    });
+
+    // ── Main ──
+    async function init() {
+      try {
+        // 1. Channel info
+        const ch = await ytGet(`channels?part=id,snippet,statistics&forHandle=${YT_HANDLE}`);
+        const channel = ch.items?.[0];
+        if (!channel) throw new Error('Chaîne introuvable');
+
+        const cid   = channel.id;
+        const stats = channel.statistics;
+        const ava   = channel.snippet?.thumbnails?.high?.url;
+
+        document.getElementById('statSubs').textContent   = fmtN(stats.subscriberCount);
+        document.getElementById('statVideos').textContent = fmtN(stats.videoCount);
+        document.getElementById('statViews').textContent  = fmtN(stats.viewCount);
+        if (ava) document.getElementById('channelAvatar').innerHTML = `<img src="${ava}" alt="avatar">`;
+
+        // 2. Uploads playlist
+        const chDet = await ytGet(`channels?part=contentDetails&id=${cid}`);
+        const uploadsId = chDet.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+        if (!uploadsId) throw new Error('Uploads introuvable');
+
+        // 3. Get last 50 video IDs
+        const pl = await ytGet(`playlistItems?part=snippet&playlistId=${uploadsId}&maxResults=50`);
+        const ids = (pl.items||[]).map(i => i.snippet.resourceId.videoId).filter(Boolean);
+
+        // 4. Get full details
+        const vids = await ytGet(`videos?part=snippet,contentDetails,statistics&id=${ids.slice(0,50).join(',')}`);
+        const all  = vids.items || [];
+
+        // 5. Split shorts / regular
+        const shorts  = all.filter(v => isShort(v));
+        const regular = all.filter(v => !isShort(v));
+
+        // 6. Latest video embed
+        const latest = regular[0];
+        if (latest) {
+          document.getElementById('latestEmbed').innerHTML =
+            `<iframe src="https://www.youtube.com/embed/${latest.id}?rel=0"
+              title="${latest.snippet.title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>`;
+        } else {
+          document.getElementById('latestEmbed').innerHTML =
+            `<div style="color:var(--text-muted);font-family:var(--font-display)">Aucune vidéo trouvée</div>`;
+        }
+
+        // 7. Shorts (6 max)
+        document.getElementById('shortsGrid').innerHTML =
+          shorts.slice(0,6).map(shortCard).join('') ||
+          '<p style="color:var(--text-muted);font-size:13px;grid-column:1/-1">Aucun short disponible.</p>';
+
+        // 8. All videos (6 dernières)
+        document.getElementById('allVideosGrid').innerHTML =
+          regular.slice(0,6).map(videoCard).join('') ||
+          '<p style="color:var(--text-muted)">Aucune vidéo disponible.</p>';
+
+        document.getElementById('videosSubtitle').textContent =
+          `${regular.length} vidéo${regular.length>1?'s':''} · Mis à jour automatiquement à chaque visite`;
+
+      } catch(err) {
+        console.error('YT Error:', err);
+        const errHtml = `<div style="text-align:center;padding:40px;color:var(--text-muted)">
+          <div style="font-size:32px;margin-bottom:12px">⚠️</div>
+          <div style="font-family:var(--font-display);margin-bottom:16px">Impossible de charger les vidéos</div>
+          <a href="https://www.youtube.com/@TarkanDofus" class="btn btn-secondary" target="_blank">Voir sur YouTube →</a>
+        </div>`;
+        document.getElementById('latestEmbed').innerHTML = errHtml;
+        document.getElementById('allVideosGrid').innerHTML = '';
+        document.getElementById('shortsGrid').innerHTML = '';
+        document.getElementById('videosSubtitle').textContent = 'Erreur de chargement';
+      }
+    }
+
+    setActiveNav('youtube');
+    init();
+  </script>
+</body>
+</html>

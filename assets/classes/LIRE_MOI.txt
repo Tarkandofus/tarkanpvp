@@ -1,0 +1,29 @@
+## 📸 Images des classes — Instructions
+
+Place les 19 images dans ce dossier `assets/classes/`
+avec exactement ces noms de fichiers :
+
+feca.jpg
+osamodas.jpg
+enutrof.jpg
+sram.jpg
+xelor.jpg
+ecaflip.jpg
+eniripsa.jpg
+iop.jpg
+cra.jpg
+sadida.jpg
+sacrieur.jpg
+pandawa.jpg
+roublard.jpg
+masqueraider.jpg
+zobal.jpg
+steamer.jpg
+eliotrope.jpg
+huppermage.jpg
+ouginak.jpg
+
+Source officielle :
+https://www.dofus.com/fr/mmorpg/encyclopedie/classes
+
+→ Clic droit sur le portrait de chaque classe → Enregistrer l'image sous
