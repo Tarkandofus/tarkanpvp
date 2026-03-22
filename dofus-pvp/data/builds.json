@@ -287,5 +287,39 @@
     "date_ajout": "2025-03-22",
     "auteur": "Tarkan",
     "vues": 0
+  },
+  {
+    "id": "sadida-multi-3-5",
+    "nom": "SADIDA MULTI 3.5",
+    "classe": "Sadida",
+    "element": "Multi",
+    "budget": "Élevé",
+    "categorie": "mes-equipements",
+    "tier": "S",
+    "priorite": 1,
+    "description": "Je joue principalement ce mode en dagues Srambad. Tu peux changer ton CAC par une faux de Thanatena contre Osamodas. Tu peux également changer pour le Znzzktoglazvzbz. Hésite pas à enlever ton Domakuro sur petite map ou à modifier certains Dofus en fonction de ton adversaire et en fonction de la MAP (ex mettre un Forgelave contre Iop/Steam etc).",
+    "conseil_fm": "",
+    "conseil_stats": "",
+    "image_build": "assets/builds/sadida-multi-3-5.png",
+    "lien_dofusbook": "https://d-bk.net/fr/d/1UEBi",
+    "stats": {
+      "vita": 4595,
+      "force": 840,
+      "intelligence": 770,
+      "chance": 840,
+      "agilite": 340,
+      "puissance": 130,
+      "sagesse": 380,
+      "pa": 12,
+      "pm": 5,
+      "po": 5,
+      "ini": 3690
+    },
+    "equipements": [],
+    "sorts_cles": [],
+    "variantes": [],
+    "date_ajout": "2025-03-22",
+    "auteur": "Tarkan",
+    "vues": 0
   }
 ]
