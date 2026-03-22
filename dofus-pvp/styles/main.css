@@ -604,7 +604,8 @@ img { max-width: 100%; display: block; }
 .tag-element-terre { background: rgba(139,90,43,0.2); color: #d97706; border: 1px solid rgba(180,100,30,0.3); }
 .tag-element-eau   { background: rgba(20,184,166,0.12); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.25); }
 .tag-element-multi { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.25); }
-.tag-element-pou   { background: rgba(234,88,12,0.12); color: #fb923c; border: 1px solid rgba(234,88,12,0.3); }
+.tag-element-pou    { background: rgba(234,88,12,0.12); color: #fb923c; border: 1px solid rgba(234,88,12,0.3); }
+.tag-element-eau-air { background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(99,102,241,0.12)); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.3); }
 
 .tag-budget-eleve  { background: rgba(239,68,68,0.1); color: #f87171; }
 .tag-budget-moyen  { background: rgba(245,158,11,0.1); color: #fbbf24; }

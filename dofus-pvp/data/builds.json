@@ -360,7 +360,7 @@
     "id": "sadida-eau-air-poison-3-5",
     "nom": "SADI EAU AIR POISON 3.5",
     "classe": "Sadida",
-    "element": "Eau",
+    "element": "Eau/Air",
     "budget": "Élevé",
     "categorie": "mes-equipements",
     "tier": "S",
