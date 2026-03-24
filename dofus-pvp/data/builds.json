@@ -398,8 +398,8 @@
     "tier": "S",
     "priorite": 1,
     "description": "Le mode le plus efficace sur Enutrof où on va jouer surtout autour du massier pour avoir un maximum de regen en frappant nos invocations au CAC de ton adversaire, ce qui permettra très facilement de placer l'ébène et de te soigner un maximum. Deux possibilités concernant les familiers légendaires : choix numéro 1 mettre soif du Moskito qui te permet d'utiliser ton \"coup de grisou\" super facilement, ou alors choix numéro 2 tu mets \"Barbarie du Kanig\" qui te boost en dégâts une fois que tu tues une entité (ça marche aussi avec tes invocations). Aucun intérêt de jouer Prygen sur ce mode au vu du regen que tu as. Au niveau de tes variantes joue avec le coffre qui frappe + Avarice qui te permettra de surprendre, car le coffre après le coup de massier frappe super fort.",
-    "conseil_fm": "",
-    "conseil_stats": "",
+    "conseil_fm": "OVER VITA sur le maximum de tes items ! C'est toujours mieux d'avoir des over vita que des over résistance, car si l'adversaire en face de toi ne joue pas dans l'élément de tes over ils ne servent à rien, tandis que la vitalité te servira toujours ! Sur le reste des items où l'over vita est impossible essaye d'avoir des % do sorts. Si tu as la possibilité essaye de faire un EXO PO sur un de tes items surtout sur le mode feu !",
+    "conseil_stats": "398 de stats et 3 en Vitalité sur le mode feu, je cherche à frapper le plus fort possible et j'ai une grosse capacité de regen du coup je mise sur les dégâts. Sur le deuxième et troisième mode je vais jouer en 300 de stats et 395 en Vitalité.",
     "image_build": "assets/builds/enu-feu-do-cri-3-5.png",
     "lien_dofusbook": "https://d-bk.net/fr/d/1UHh9",
     "stats": {
